@@ -1,0 +1,23 @@
+{
+  "name": "natours",
+  "version": "1.0.0",
+  "description": "A project built in Nodejs, Express, and mongoDB",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yijia-xu/Natours.git"
+  },
+  "author": "Yijia Xu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yijia-xu/Natours/issues"
+  },
+  "homepage": "https://github.com/yijia-xu/Natours#readme",
+  "dependencies": {
+    "express": "^4.21.2",
+    "nodemon": "^3.1.10"
+  }
+}
