@@ -3,6 +3,18 @@ const handleCastErrorDB = err => {
     const msg = 'Invalid ' + err.path + ': ' + err.value;
     return new AppError(msg, 400);
 }
+const handleDuplicateFieldsDB = err => {
+    const value = err.errorResponse.errmsg.match(/(["'])(\\?.)*?\1/)[0]; 
+    console.log(value);
+
+    const msg = 'Duplicate field value: ' + err.keyValue.name + '. Please use another value!';
+    return new AppError(msg, 400);
+}
+const handValidationErrorDB = err => {
+    const errors = Object.values(err.errors).map(el => el.message);
+    const msg = `Invalid input data. ${errors.join('. ')}`;
+    return new AppError(msg, 400);
+}
 
 const sendErrorDev = (err, res) => {
     res.status(err.statusCode).json({
@@ -42,6 +54,12 @@ module.exports = (err, req, res, next) => {
         let error = {...err}; // create a shallow copy of the error object
         if (error.name === 'CastError') {
             error = handleCastErrorDB(error);
+        }
+        if (error.code === 11000) { //duplicate key err
+            error = handleDuplicateFieldsDB(error);
+        }
+        if (err.name === 'ValidationError') {
+            error = handValidationErrorDB(error);
         }
 
         sendErrirProd(error, res);
