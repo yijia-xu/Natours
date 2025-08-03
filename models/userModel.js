@@ -19,6 +19,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: 'default.jpg'
     },
+    role: {
+        type: String,
+        enum: ['user', 'guide', 'lead-guide', 'admin'],
+        default: 'user'
+    },
     password: {
         type: String,
         required: [true, 'Please provide a password'],
@@ -34,7 +39,8 @@ const userSchema = new mongoose.Schema({
             },
             message: "Passwords do not match!"
         }
-    }
+    },
+    passwordChangedAt: Date
 
 });
 
@@ -44,6 +50,7 @@ userSchema.pre('save', async function(next) {
         return next();
     this.password = await bcrypt.hashSync(this.password, 12);
     this.passwordConfirm = undefined; // delete passwordConfirm field
+    this.passwordChangedAt = Date.now() - 1000;
 
     next();
 });
@@ -51,6 +58,19 @@ userSchema.pre('save', async function(next) {
 userSchema.methods.correctPassword = async function(candidatePassword, userPassword) {
     return await bcrypt.compare(candidatePassword, userPassword);
 };
+
+userSchema.methods.changedPasswordAfter = function(JWTTimestamp) {
+    if (this.passwordChangedAt) {
+        const changedTimestamp = parseInt(this.passwordChangedAt.getTime() / 1000, 10);
+        console.log(changedTimestamp, JWTTimestamp); 
+
+        return JWTTimestamp < changedTimestamp;
+    }
+
+
+    return false;
+};
+
 
 const User = mongoose.model('User', userSchema);
 

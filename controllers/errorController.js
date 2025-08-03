@@ -16,6 +16,10 @@ const handValidationErrorDB = err => {
     return new AppError(msg, 400);
 }
 
+const handleJWTError = () => new AppError('Invalid token. Please log in again!', 401);
+
+const handleJWTExpriredError = () => new AppError('Your token has expired! Please log in again.', 401);
+
 const sendErrorDev = (err, res) => {
     res.status(err.statusCode).json({
             status: err.status,
@@ -24,7 +28,7 @@ const sendErrorDev = (err, res) => {
             error: err
         });
 };
-const sendErrirProd = (err, res) => {
+const sendErrorProd = (err, res) => {
     if (err.isOperational) {
         res.status(err.statusCode).json({
             status: err.status,
@@ -52,17 +56,23 @@ module.exports = (err, req, res, next) => {
         sendErrorDev(err, res);
     } else if (process.env.NODE_ENV === 'production') {
         let error = {...err}; // create a shallow copy of the error object
+        error.message = err.message;
         if (error.name === 'CastError') {
             error = handleCastErrorDB(error);
         }
         if (error.code === 11000) { //duplicate key err
             error = handleDuplicateFieldsDB(error);
         }
-        if (err.name === 'ValidationError') {
+        if (error.name === 'ValidationError') {
             error = handValidationErrorDB(error);
         }
+        if (error.name === 'JsonWebTokenError') 
+            error = handleJWTError();
+        if (error.name === 'TokenExpiredError')
+            handleJWTExpriredError();
 
-        sendErrirProd(error, res);
+
+        sendErrorProd(error, res);
     }
 
 };
