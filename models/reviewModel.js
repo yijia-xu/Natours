@@ -57,7 +57,7 @@ reviewSchema.statics.calcAverageRatings = async function (tourId) {
             }
         }
     ]);
-    console.log(stats);
+    //console.log(stats);
 
     await Tour.findByIdAndUpdate(tourId, {
         ratingsQuantity: stats.length > 0 ? stats[0].nRating : 0,
