@@ -52,22 +52,22 @@ const userSchema = new mongoose.Schema({
 
 });
 
-userSchema.pre('save', async function(next) {
-    // Only hash the password if it has been modified
-    if (!this.isModified('password'))
-        return next();
-    this.password = await bcrypt.hashSync(this.password, 12);
-    this.passwordConfirm = undefined; // delete passwordConfirm field
+// userSchema.pre('save', async function(next) {
+//     // Only hash the password if it has been modified
+//     if (!this.isModified('password'))
+//         return next();
+//     this.password = await bcrypt.hashSync(this.password, 12);
+//     this.passwordConfirm = undefined; // delete passwordConfirm field
 
-    next();
-});
+//     next();
+// });
 
-userSchema.pre('save', function(next) {
-    if (!this.isModified('password') || this.isNew) 
-        return next();
-    this.passwordChangedAt = Date.now() - 1000;
-    next();
-});
+// userSchema.pre('save', function(next) {
+//     if (!this.isModified('password') || this.isNew) 
+//         return next();
+//     this.passwordChangedAt = Date.now() - 1000;
+//     next();
+// });
 
 userSchema.pre(/^find/, function(next) {
     this.find({ active: {$ne: false} });
