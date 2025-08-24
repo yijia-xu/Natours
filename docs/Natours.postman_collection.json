@@ -1,0 +1,1070 @@
+{
+	"info": {
+		"_postman_id": "2fdace76-b636-4f77-b40e-cbb3b6592c68",
+		"name": "Natours",
+		"description": "**The Natours API contains endpoints for Tours, Users, and Reviews.**",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "45629565"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get All Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/users",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"users"
+							]
+						},
+						"description": "## Get Users\n\nThis endpoint retrieves a list of users.\n\n### Request\n\n- **Method**: GET\n    \n- **URL**: `{{URL}}api/v1/users`\n    \n\n### Response\n\n- **Status**: 200 OK\n    \n- **Content-Type**: application/json\n    \n- **Body**:\n    \n    - `status`: Status of the request.\n        \n    - `results`: Number of users returned (0 if none).\n        \n    - `data`: Contains an array of user objects, each with the following fields:\n        \n        - `_id`: Unique identifier for the user.\n            \n        - `name`: Name of the user.\n            \n        - `email`: Email address of the user.\n            \n        - `photo`: URL of the user's photo.\n            \n        - `role`: Role of the user.\n            \n\nThis endpoint retrieves a list of users from the system. It is useful for obtaining user information such as their names, email addresses, roles, and associated photos.\n\n#### Request\n\n- **Method**: GET\n    \n- **URL**: `{{URL}}api/v1/users`\n    \n\nThis endpoint does not require any request body parameters. Simply sending the GET request to the specified URL will return the user data.\n\n#### Response\n\nUpon a successful request, the server responds with a status code of **200** and a JSON object containing the following structure:\n\n- **status**: A string indicating the status of the request.\n    \n- **results**: An integer representing the number of user records returned.\n    \n- **data**: An object containing:\n    \n    - **data**: An array of user objects, where each user object includes:\n        \n        - **_id**: A unique identifier for the user.\n            \n        - **name**: The name of the user.\n            \n        - **email**: The email address of the user.\n            \n        - **photo**: A URL or path to the user's photo.\n            \n        - **role**: The role assigned to the user within the system.\n            \n\nExample Response:\n\n``` json\n{\n  \"status\": \"\",\n  \"results\": 0,\n  \"data\": {\n    \"data\": [\n      {\n        \"_id\": \"\",\n        \"name\": \"\",\n        \"email\": \"\",\n        \"photo\": \"\",\n        \"role\": \"\"\n      }\n    ]\n  }\n}\n\n ```\n\nThis structure allows clients to easily parse and utilize the user information retrieved from the API."
+					},
+					"response": []
+				},
+				{
+					"name": "Get User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/v1/users/2",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"2"
+							]
+						},
+						"description": "## API Request: Get User Details\n\n### Method\n\n`GET`\n\n### Endpoint\n\n`{{URL}}/api/v1/users/{id}`\n\n### Parameters\n\n- **Path Parameter:**\n    \n    - `id` (integer): The unique identifier of the user whose details are being requested. In this example, the user ID is `2`.\n        \n\n### Expected Response\n\nUpon a successful request, the API will return the details of the user in a structured format, typically as a JSON object. The response will include various user attributes, such as user name, email, and other relevant information associated with the user ID provided in the request.\n\n### Example Response Format\n\n``` json\n{\n  \"id\": 2,\n  \"name\": \"User Name\",\n  \"email\": \"user@example.com\",\n  ...\n}\n\n ```\n\nThis endpoint is useful for retrieving detailed information about a specific user by their unique identifier."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Current User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/users/me",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"users",
+								"me"
+							]
+						},
+						"description": "### Get Current User Information\n\nThis endpoint retrieves the details of the currently authenticated user. It is useful for obtaining user-specific data such as profile information, settings, and preferences.\n\n#### Request\n\n- **Method**: GET\n    \n- **Endpoint**: `{{URL}}api/v1/users/me`\n    \n\n#### Expected Input Parameters\n\nThis endpoint does not require any input parameters in the request body. However, it is essential that the request is made with appropriate authentication headers to ensure that the user is authenticated.\n\n#### Response Structure\n\nOn a successful request, the response will include the following fields:\n\n- `id`: Unique identifier for the user.\n    \n- `name`: The name of the user.\n    \n- `email`: The email address associated with the user account.\n    \n- `createdAt`: Timestamp indicating when the user account was created.\n    \n- `updatedAt`: Timestamp indicating the last time the user account was updated.\n    \n\nThe response will be in JSON format and will provide the current user's information based on the authenticated session.\n\n#### Example Response\n\n``` json\n{\n  \"id\": \"user_id_value\",\n  \"name\": \"user_name_value\",\n  \"email\": \"user_email_value\",\n  \"createdAt\": \"timestamp_value\",\n  \"updatedAt\": \"timestamp_value\"\n}\n\n ```\n\nMake sure to handle any potential errors, such as unauthorized access or user not found, by checking the status code of the response."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/users/68b8a913cf5b52c7ac85d31c",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"users",
+								"68b8a913cf5b52c7ac85d31c"
+							]
+						},
+						"description": "## DELETE User Endpoint\n\nThis endpoint is used to delete a specific user from the system by their unique identifier.\n\n### Request\n\n- **Method**: DELETE\n    \n- **URL**: `{{URL}}api/v1/users/{userId}`\n    \n    - Replace `{userId}` with the unique identifier of the user you wish to delete (e.g., `68b8a914bf5b52c7ac88d31c`).\n        \n\n### Expected Request Body\n\nThis request does not require a request body. Simply send the DELETE request to the specified URL.\n\n### Response Structure\n\nOn successful deletion, the response will typically contain:\n\n- **Status Code**: `204 No Content`\n    \n    - This indicates that the request was successful and the user has been deleted without returning any content.\n        \n\nIn case the user does not exist, you may receive:\n\n- **Status Code**: `404 Not Found`\n    \n    - This indicates that the user with the specified ID was not found in the system.\n        \n\n### Summary\n\nUse this endpoint to remove a user from the database by providing their unique identifier in the URL. Ensure to handle the possible responses appropriately, especially the `404 Not Found` status if the user does not exist."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Current User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/users/deleteMe",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"users",
+								"deleteMe"
+							]
+						},
+						"description": "# Delete User Account\n\nThis endpoint allows a user to delete their own account from the system. It is a secure operation that requires authentication to ensure that only the user can delete their account.\n\n## HTTP Method\n\n`DELETE`\n\n## Endpoint\n\n`{{URL}}api/v1/users/deleteMe`\n\n## Request Parameters\n\nThis endpoint does not require any additional parameters in the request body. However, it is essential that the request is made with proper authentication headers to validate the user's identity.\n\n## Expected Responses\n\n- **204 No Content**: The request was successful, and the user account has been deleted. No content will be returned in the response body.\n    \n- **401 Unauthorized**: The request lacks valid authentication credentials. The user must be logged in to perform this operation.\n    \n- **404 Not Found**: The user account does not exist. This may occur if the user is trying to delete an account that has already been removed.\n    \n- **500 Internal Server Error**: An unexpected error occurred on the server while processing the request. The user may try again later.\n    \n\nEnsure that you handle these responses appropriately in your application to provide a smooth user experience.\n\n## Endpoint\n\n`{{URL}}api/v1/users/deleteMe`\n\n## Method\n\n`DELETE`\n\n## Parameters\n\nThis endpoint does not require any additional parameters.\n\n## Request Body\n\nThis endpoint does not require a request body.\n\n## Responses\n\nThe following are the possible responses for this endpoint:\n\n- **204 No Content**: Indicates that the user has been successfully deleted. No additional content will be returned.\n    \n- **400 Bad Request**: Indicates that the request was malformed or invalid.\n    \n- **401 Unauthorized**: Indicates that the user is not authorized to perform this action.\n    \n- **404 Not Found**: Indicates that the user was not found.\n    \n\nEnsure that the user is authenticated before attempting to delete their account.\n\nThis endpoint allows the authenticated user to delete their own account from the system. It is a critical operation that permanently removes the user's data and should be used with caution.\n\n#### Request\n\n- **Method**: DELETE\n    \n- **Endpoint**: `{{URL}}api/v1/users/deleteMe`\n    \n\n##### Request Body\n\nThe request does not require a body. Ensure that the user is authenticated and authorized to perform this action.\n\n#### Response\n\nUpon successful deletion of the user account, the response will contain the following structure:\n\n- **status**: Indicates the success or failure of the operation (e.g., \"success\" or \"error\").\n    \n- **message**: A descriptive message providing additional context about the operation (e.g., \"User account deleted successfully\").\n    \n\n##### Example Response\n\n``` json\n{\n  \"status\": \"success\",\n  \"message\": \"User account deleted successfully\"\n}\n\n ```\n\nEnsure that appropriate error handling is in place to manage scenarios where the user is not authenticated or if the account deletion fails.\n\nThis endpoint allows the authenticated user to delete their own account from the system.\n\n#### Request Details\n\n- **Method**: DELETE\n    \n- **Endpoint**: `{{URL}}api/v1/users/deleteMe`\n    \n\n#### Important Notes\n\n- The request must be authenticated, and the user should have the necessary permissions to perform this action.\n    \n- No request body parameters are required for this operation; the request is executed based on the user's authentication credentials.\n    \n\n#### Response\n\nUpon successful deletion, the server will respond with a confirmation message indicating that the account has been deleted. Ensure to handle any potential error responses appropriately, such as unauthorized access or account not found."
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"administrater\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/users/68b8a80a0735e17953ea98bb",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"users",
+								"68b8a80a0735e17953ea98bb"
+							]
+						},
+						"description": "## Update User Information\n\nThis endpoint allows you to update the information of a specific user identified by their unique ID. In this case, the user ID is `68b8a84a0735e17953ea90ac`.\n\n### Request\n\n- **Method**: PATCH\n    \n- **Endpoint**: `{{URL}}api/v1/users/{userId}`\n    \n- **Path Parameter**:\n    \n    - `userId` (string): The unique identifier of the user whose information is to be updated.\n        \n\n### Request Body\n\nThe request body should be a JSON object containing the following key:\n\n- `name` (string): The new name of the user. This parameter is required and should be provided in the request body.\n    \n\n**Example Request Body**:\n\n``` json\n{\n  \"name\": \"administrater\"\n}\n\n ```\n\n### Response\n\nUpon a successful request, the server will respond with the updated user information. The response structure typically includes:\n\n- `id` (string): The unique identifier of the user.\n    \n- `name` (string): The updated name of the user.\n    \n- `updatedAt` (string): A timestamp indicating when the user information was last updated.\n    \n\n### Usage\n\nTo effectively use this request, ensure that you provide a valid user ID in the URL and include the necessary parameters in the request body. This endpoint is useful for modifying user details without needing to replace the entire user object."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tours",
+			"item": [
+				{
+					"name": "Get All Tours",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/tours?price[lt]=1000&ratingsAverage[gte]=4.7",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"tours"
+							],
+							"query": [
+								{
+									"key": "price[lt]",
+									"value": "1000"
+								},
+								{
+									"key": "ratingsAverage[gte]",
+									"value": "4.7"
+								}
+							]
+						},
+						"description": "Use this endpoint to create a new tour.\n\nThis is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Tour",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/tours/68ba3302c5fc07003ff2c7f0",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"tours",
+								"68ba3302c5fc07003ff2c7f0"
+							]
+						},
+						"description": "## API Endpoint: Get Tour Details\n\nThis endpoint retrieves detailed information about a specific tour identified by its unique ID. The response includes various attributes related to the tour, such as its location, duration, pricing, ratings, and associated guides.\n\n### Request\n\n- **Method**: GET\n    \n- **Endpoint**: `{{URL}}api/v1/tours/{tourId}`\n    \n- **Path Parameter**:\n    \n    - `tourId` (string): The unique identifier of the tour you wish to retrieve details for. In this example, it is `5c88fa8cf4afda39709c270d`.\n        \n\n### Response\n\n- **Status Code**: 200 OK\n    \n- **Content-Type**: application/json\n    \n\n#### Response Structure\n\nThe response is a JSON object containing the following structure:\n\n``` json\n{\n  \"status\": \"\",\n  \"data\": {\n    \"data\": {\n      \"startLocation\": {\n        \"type\": \"\",\n        \"coordinates\": [0],\n        \"address\": \"\",\n        \"description\": \"\"\n      },\n      \"_id\": \"\",\n      \"name\": \"\",\n      \"duration\": 0,\n      \"maxGroupSize\": 0,\n      \"difficulty\": \"\",\n      \"ratingsAverage\": 0,\n      \"ratingsQuantity\": 0,\n      \"rating\": 0,\n      \"price\": 0,\n      \"summary\": \"\",\n      \"description\": \"\",\n      \"imageCover\": \"\",\n      \"images\": [\"\"],\n      \"startDates\": [\"\"],\n      \"secretTour\": true,\n      \"locations\": [\n        {\n          \"type\": \"\",\n          \"coordinates\": [0],\n          \"description\": \"\",\n          \"day\": 0,\n          \"_id\": \"\",\n          \"id\": \"\"\n        }\n      ],\n      \"guides\": [\n        {\n          \"_id\": \"\",\n          \"name\": \"\",\n          \"email\": \"\",\n          \"photo\": \"\",\n          \"role\": \"\",\n          \"__v\": 0\n        }\n      ],\n      \"slug\": \"\",\n      \"__v\": 0,\n      \"durationWeeks\": 0,\n      \"reviews\": [\n        {\n          \"_id\": \"\",\n          \"review\": \"\",\n          \"rating\": 0,\n          \"tour\": \"\",\n          \"user\": {\n            \"_id\": \"\",\n            \"name\": \"\",\n            \"photo\": \"\"\n          },\n          \"createdAt\": \"\",\n          \"__v\": 0,\n          \"id\": \"\"\n        }\n      ],\n      \"id\": \"\"\n    }\n  }\n}\n\n ```\n\n### Key Response Fields\n\n- **status**: The status of the request.\n    \n- **data**: Contains the detailed information of the tour:\n    \n    - **startLocation**: Information about where the tour starts.\n        \n    - **_id**: Unique identifier for the tour.\n        \n    - **name**: Name of the tour.\n        \n    - **duration**: Duration of the tour in hours.\n        \n    - **maxGroupSize**: Maximum number of participants allowed.\n        \n    - **difficulty**: Difficulty level of the tour.\n        \n    - **ratingsAverage**: Average rating of the tour.\n        \n    - **price**: Price of the tour.\n        \n    - **locations**: An array of locations included in the tour.\n        \n    - **guides**: An array of guides associated with the tour.\n        \n    - **reviews**: An array of reviews for the tour.\n        \n\n### Headers\n\nNo specific headers are required for this GET request. However, standard headers such as `Authorization` may be needed if the API is secured."
+					},
+					"response": []
+				},
+				{
+					"name": "Create New Tour",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\":\"New test Tour\",\n    \"duration\":1,\n    \"maxGroupSize\":1,\n    \"difficulty\":\"easy\",\n    \"ratingsAverage\":4,\n    \"price\":200,\n    \"summary\":\"Test Tour\",\n    \"imageCover\":\"tour-1-cover.jpg\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/tours",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"tours"
+							]
+						},
+						"description": "### POST Request to Create a New Tour\n\nThis request is used to create a new tour in the system. It accepts a JSON payload containing details about the tour and returns the created tour's information upon success.\n\n#### Request Body Parameters:\n\n- **name** (string): The name of the tour.\n    \n- **duration** (integer): The duration of the tour in days.\n    \n- **maxGroupSize** (integer): The maximum number of participants allowed in the tour.\n    \n- **difficulty** (string): The difficulty level of the tour (e.g., easy, medium, hard).\n    \n- **ratingsAverage** (number): The average rating of the tour.\n    \n- **price** (number): The price of the tour.\n    \n- **summary** (string): A brief summary of the tour.\n    \n- **imageCover** (string): The filename of the cover image for the tour.\n    \n\n#### Response Structure:\n\nOn a successful request, the API responds with a `201 Created` status code and a JSON object containing the following structure:\n\n``` json\n{\n  \"status\": \"\",\n  \"data\": {\n    \"data\": {\n      \"name\": \"\",\n      \"duration\": 0,\n      \"maxGroupSize\": 0,\n      \"difficulty\": \"\",\n      \"ratingsAverage\": 0,\n      \"ratingsQuantity\": 0,\n      \"rating\": 0,\n      \"price\": 0,\n      \"summary\": \"\",\n      \"imageCover\": \"\",\n      \"images\": [],\n      \"createdAt\": \"\",\n      \"startDates\": [],\n      \"secretTour\": true,\n      \"startLocation\": {\n        \"type\": \"\",\n        \"coordinates\": []\n      },\n      \"guides\": [],\n      \"_id\": \"\",\n      \"locations\": [],\n      \"slug\": \"\",\n      \"__v\": 0,\n      \"durationWeeks\": 0,\n      \"id\": \"\"\n    }\n  }\n}\n\n ```\n\nThis structure includes the details of the newly created tour along with additional metadata."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Tour",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/tours/5c88fa8cf4afda39709c2955",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"tours",
+								"5c88fa8cf4afda39709c2955"
+							]
+						},
+						"description": "### DELETE Request to Remove a Tour\n\nThis is a **DELETE** request used to remove a specific tour identified by its unique identifier from the system.\n\n- **Endpoint**: `{{URL}}api/v1/tours/{tourId}`\n    \n    - Replace `{tourId}` with the actual ID of the tour you wish to delete (e.g., `5c28fa8cf4afda39709c29a0`).\n        \n\n#### Request Method\n\n- **Method**: DELETE\n    \n\n#### Parameters\n\n- **URL Parameter**:\n    \n    - `tourId`: The unique identifier of the tour to be deleted.\n        \n\n#### Expected Response\n\nA successful DELETE request typically returns one of the following response codes:\n\n- `200 OK`: The request was successful, and the tour has been deleted.\n    \n- `202 Accepted`: The request has been accepted for processing, but the processing has not been completed.\n    \n- `204 No Content`: The request was successful, and there is no content to return."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Tour",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"guides\": [\n        \"68b9db2f848ef93f5bee2faf\",\n        \"68b9e19877a474bd80dc7bb3\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/tours/68ba3302c5fc07003ff2c7f0",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"tours",
+								"68ba3302c5fc07003ff2c7f0"
+							]
+						},
+						"description": "### PATCH /api/v1/tours/{tourId}\n\nThis endpoint is used to update the details of a specific tour identified by its unique `tourId`. The primary purpose of this request is to modify the list of guides associated with the tour.\n\n#### Request Body\n\nThe request body must be in JSON format and should include the following parameter:\n\n- **guides** (Array of Strings): A list of unique identifiers (IDs) for the guides to be associated with the tour. Each ID should correspond to an existing guide.\n    \n\n**Example Request Body:**\n\n``` json\n{\n  \"guides\": [\"68b9d2af844ef93f5bee2faf\"]\n}\n\n ```\n\n#### Expected Headers\n\n- **Content-Type**: `application/json` - This header indicates that the request body is formatted as JSON.\n    \n\n#### Response Structure\n\nThe response from this endpoint will return a JSON object. In the case of a successful request, the structure will typically include the updated tour information. However, in the last execution, the response was:\n\n- **Status**: `403 Forbidden` - This indicates that the request was not authorized.\n    \n- **Content-Type**: `application/json`\n    \n- {\"status\": \"\",\"message\": \"\",\"stack\": \"\",\"error\": { \"statusCode\": 0, \"status\": \"\", \"isOperational\": true}}\n    \n\nThis response indicates an operational error, and the fields may contain additional information regarding the error state.\n\n#### Notes\n\n- Ensure that the user making the request has the necessary permissions to modify the tour.\n    \n- If the request fails, check the authorization and access rights for the user."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Top-5 Cheap Tours",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "127.0.0.1:3000/api/v1/tours/top-5-cheap",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"tours",
+								"top-5-cheap"
+							]
+						},
+						"description": "## Get Top 5 Cheap Tours\n\nThis endpoint retrieves a list of the top 5 cheapest tours available in the system. It is a simple GET request that does not require any parameters to be passed in the request body.\n\n### Request\n\n- **Method**: GET\n    \n- **URL**: `127.0.0.1:3000/api/v1/tours/top-5-cheap`\n    \n\n### Response\n\nUpon a successful request, the response will contain the following:\n\n- **Status Code**: 200 OK\n    \n- **Body**: An array of tour objects, each containing details about the tour, such as:\n    \n    - Tour ID\n        \n    - Tour name\n        \n    - Price\n        \n    - Duration\n        \n    - Description\n        \n\n### Notes\n\n- Ensure that the server is running and accessible at the specified URL.\n    \n- This endpoint is useful for users looking to find budget-friendly tour options quickly.\n    \n- The response will be in JSON format, making it easy to parse and utilize in applications."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Monthly Plan",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "127.0.0.1:3000/api/v1/tours/monthlyPlan/2021",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"tours",
+								"monthlyPlan",
+								"2021"
+							]
+						},
+						"description": "### Endpoint: Get Monthly Tour Plan\n\n**HTTP Method:** GET  \n**URL:** `127.0.0.1:3000/api/v1/tours/monthlyPlan/{year}`\n\n#### Purpose\n\nThis endpoint retrieves the monthly tour plan for a specified year. It allows users to access detailed information about tours scheduled for each month within the given year.\n\n#### Request Format\n\nThis endpoint does not require a request body as it is a GET request. The year should be specified in the URL path as a parameter.\n\n- **Path Parameter:**\n    \n    - `year` (integer): The year for which the monthly tour plan is requested (e.g., `2021`).\n        \n\n#### Response Structure\n\nThe response will be a JSON object containing the monthly tour plans for the specified year. The structure of the response body is as follows:\n\n- **Response Body:**\n    \n    - `status` (string): Indicates the status of the response (e.g., \"success\" or \"error\").\n        \n    - `data` (object): Contains the details of the monthly tour plans.\n        \n        - `year` (integer): The requested year.\n            \n        - `monthlyPlans` (array): An array of objects, each representing a month.\n            \n            - Each object in the `monthlyPlans` array includes:\n                \n                - `month` (string): The name of the month.\n                    \n                - `tours` (array): A list of tours scheduled for that month.\n                    \n                    - Each tour object may include:\n                        \n                        - `tourId` (string): Unique identifier for the tour.\n                            \n                        - `tourName` (string): Name of the tour.\n                            \n                        - `description` (string): A brief description of the tour.\n                            \n                        - `date` (string): Date of the tour.\n                            \n\nThis endpoint is useful for users looking to plan their tours based on monthly availability."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Tour Stats",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "127.0.0.1:3000/api/v1/tours/tour-stats",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"tours",
+								"tour-stats"
+							]
+						},
+						"description": "### Get Tour Statistics\n\nThis endpoint retrieves statistical data related to tours. It is designed to provide insights into various metrics associated with the tours available in the system.\n\n#### Expected Outcomes\n\nUpon a successful request, the response will contain detailed statistics that may include metrics such as the number of tours, average ratings, and other relevant data that can help in analyzing the performance and popularity of the tours offered.\n\n**HTTP Method:** GET  \n**Endpoint:** `/api/v1/tours/tour-stats`\n\nThis endpoint retrieves the monthly tour plan for a specified year. It allows users to access detailed information about tours scheduled for each month of the given year, facilitating advanced planning for users interested in participating in various tours.\n\n### Request\n\n- **Method**: GET\n    \n- **URL**: `127.0.0.1:3000/api/v1/tours/monthlyPlan/{year}`\n    \n- **Path Parameter**:\n    \n    - `year` (required): The year for which the monthly tour plan is requested. This should be a four-digit year (e.g., `2021`).\n        \n\n### Response\n\nThe response will contain a JSON object with the following structure:\n\n- `status`: A string indicating the status of the request (e.g., \"success\" or \"error\").\n    \n- `data`: An object containing the monthly tour plans, structured as follows:\n    \n    - `year`: The year for which the plans are provided.\n        \n    - `monthlyPlans`: An array of objects, each representing a month with the following properties:\n        \n        - `month`: The name of the month (e.g., \"January\").\n            \n        - `tours`: An array of tour objects scheduled for that month, where each tour object contains:\n            \n            - `tourId`: A unique identifier for the tour.\n                \n            - `tourName`: The name of the tour.\n                \n            - `description`: A brief description of the tour.\n                \n            - `date`: The date(s) the tour is scheduled for.\n                \n\n### Example Response\n\n``` json\n{\n  \"status\": \"success\",\n  \"data\": {\n    \"year\": 2021,\n    \"monthlyPlans\": [\n      {\n        \"month\": \"January\",\n        \"tours\": [\n          {\n            \"tourId\": \"1\",\n            \"tourName\": \"New Year Celebration\",\n            \"description\": \"Celebrate the New Year with a special tour.\",\n            \"date\": \"2021-01-01\"\n          }\n        ]\n      }\n      // Additional months and tours would follow...\n    ]\n  }\n}\n\n ```\n\nThis endpoint is useful for users looking to plan their tours in advance or to get an overview of available tours for a specific month in the specified year."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Tours with Radius",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/tours/tours-within/500/center/45.4948485,-73.5775837/unit/mi",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"tours",
+								"tours-within",
+								"500",
+								"center",
+								"45.4948485,-73.5775837",
+								"unit",
+								"mi"
+							]
+						},
+						"description": "## Endpoint Description\n\nThis endpoint retrieves tours that are located within a specified radius from a given geographical center point. The request uses the HTTP GET method and requires parameters to define the radius, center coordinates, and unit of measurement.\n\n### Request Parameters\n\n- **Radius**: `500` (integer) - The distance from the center point within which to search for tours, specified in the unit of measurement.\n    \n- **Center**: `45,-74` (string) - The geographical coordinates (latitude and longitude) that define the center point for the search.\n    \n- **Unit**: `mi` (string) - The unit of measurement for the radius, which can be in miles or kilometers.\n    \n\n### Expected Response\n\nOn a successful request (HTTP Status 200), the response will contain a JSON object with the following structure:\n\n- **status**: (string) - Indicates the status of the request.\n    \n- **results**: (integer) - The number of tours found within the specified radius.\n    \n- **data**: (object) - Contains an array of tour data, where each tour object includes:\n    \n    - **startLocation**: (object) - Details about the starting location of the tour, including type, coordinates, address, and description.\n        \n    - **_id**: (string) - Unique identifier for the tour.\n        \n    - **name**: (string) - Name of the tour.\n        \n    - **duration**: (integer) - Duration of the tour in hours.\n        \n    - **maxGroupSize**: (integer) - Maximum number of participants allowed in the tour.\n        \n    - **difficulty**: (string) - Difficulty level of the tour.\n        \n    - **ratingsAverage**: (number) - Average rating of the tour.\n        \n    - **ratingsQuantity**: (integer) - Total number of ratings received.\n        \n    - **rating**: (number) - Current rating of the tour.\n        \n    - **price**: (number) - Price of the tour.\n        \n    - **summary**: (string) - Brief summary of the tour.\n        \n    - **description**: (string) - Detailed description of the tour.\n        \n    - **imageCover**: (string) - URL of the cover image for the tour.\n        \n    - **images**: (array of strings) - Array of image URLs related to the tour.\n        \n    - **startDates**: (array of strings) - Available start dates for the tour.\n        \n    - **secretTour**: (boolean) - Indicates if the tour is a secret tour.\n        \n    - **locations**: (array of objects) - List of locations included in the tour, each with coordinates and descriptions.\n        \n    - **guides**: (array of objects) - List of guides for the tour, including their names, emails, and roles.\n        \n\n### Notes\n\n- Ensure that the coordinates are provided in the correct format (latitude, longitude).\n    \n- The response may contain multiple tours or none, depending on the availability within the specified radius."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Distances to Tours from Point",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/tours/distances/45.4948485,-73.5775837/unit/mi",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"tours",
+								"distances",
+								"45.4948485,-73.5775837",
+								"unit",
+								"mi"
+							]
+						},
+						"description": "### API Endpoint: Get Tour Distances\n\nThis endpoint allows you to retrieve distance information for a specific tour based on the provided geographical coordinates.\n\n#### Request Method\n\n- **GET**\n    \n\n#### Endpoint\n\n- `{{URL}}api/v1/tours/distances/{latitude},{longitude}/unit/{unit}`\n    \n\n#### Path Parameters\n\n- **latitude** (required): The latitude of the location (e.g., `45`).\n    \n- **longitude** (required): The longitude of the location (e.g., `-74`).\n    \n- **unit** (required): The unit of measurement for the distance (e.g., `mi` for miles).\n    \n\n#### Expected Response\n\n- **Status Code**: `200 OK`\n    \n- **Content-Type**: `application/json`\n    \n\nThe response will contain a JSON object structured as follows:\n\n``` json\n{\n  \"status\": \"\",\n  \"data\": {\n    \"data\": [\n      {\n        \"_id\": \"\",\n        \"name\": \"\",\n        \"distance\": 0\n      }\n    ]\n  }\n}\n\n ```\n\n#### Response Fields\n\n- **status**: A string indicating the status of the request.\n    \n- **data**: An object containing an array of distance data.\n    \n    - **_id**: The unique identifier for the distance entry.\n        \n    - **name**: The name associated with the distance entry.\n        \n    - **distance**: The calculated distance value.\n        \n\nThis endpoint is useful for applications that need to display or utilize distance information based on geographic coordinates."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reviews",
+			"item": [
+				{
+					"name": "Get All Reviews",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/reviews",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"reviews"
+							]
+						},
+						"description": "## API Endpoint: Get Reviews\n\nThis endpoint retrieves a list of reviews from the server. It is designed to allow users to fetch reviews that may include various details about products or services.\n\n### Request Parameters\n\nThis endpoint does not require any input parameters in the request.\n\n### Response Structure\n\nUpon a successful request, the response will include a JSON object containing the following structure:\n\n- `reviews`: An array of review objects, where each object may contain:\n    \n    - `id`: The unique identifier for the review.\n        \n    - `product_id`: The identifier for the product associated with the review.\n        \n    - `rating`: The rating given in the review.\n        \n    - `comment`: The text of the review.\n        \n    - `created_at`: The timestamp when the review was created.\n        \n    - `updated_at`: The timestamp when the review was last updated.\n        \n\n### Example Response\n\n``` json\n{\n  \"reviews\": [\n    {\n      \"id\": \"1\",\n      \"product_id\": \"101\",\n      \"rating\": 5,\n      \"comment\": \"Excellent product!\",\n      \"created_at\": \"2023-10-01T12:00:00Z\",\n      \"updated_at\": \"2023-10-01T12:00:00Z\"\n    },\n    {\n      \"id\": \"2\",\n      \"product_id\": \"102\",\n      \"rating\": 4,\n      \"comment\": \"Very good, but could be improved.\",\n      \"created_at\": \"2023-10-02T12:00:00Z\",\n      \"updated_at\": \"2023-10-02T12:00:00Z\"\n    }\n  ]\n}\n\n ```\n\nThis response structure allows consumers to easily parse and utilize the review data as needed."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Review",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/reviews/68bc524c9571f715beb3d1e0",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"reviews",
+								"68bc524c9571f715beb3d1e0"
+							]
+						},
+						"description": "### Retrieve Review by ID\n\nThis endpoint allows you to retrieve a specific review based on its unique identifier (ID).\n\n#### Request\n\n- **Method**: GET\n    \n- **URL**: `{{URL}}api/v1/reviews/{reviewId}`\n    \n- **Path Parameter**:\n    \n    - `reviewId` (string): The unique identifier of the review you wish to retrieve. In this example, the review ID is `5c33fa8cf4afda39709c297c`.\n        \n\n#### Response\n\n- **Status Code**:\n    \n    - `200 OK`: Indicates that the review was successfully retrieved.\n        \n    - `404 Not Found`: Indicates that the review with the specified ID does not exist.\n        \n- **Content-Type**: application/json\n    \n- **Response Body**:\n    \n    - On success, the response will contain the details of the review.\n        \n    - On failure (404), the response will include an error object with the following structure:\n        \n        - `status`: A brief description of the error (empty in this case).\n            \n        - `message`: A message providing further details about the error (empty in this case).\n            \n        - `stack`: A stack trace for debugging (empty in this case).\n            \n        - `error`: An object containing:\n            \n            - `statusCode`: The HTTP status code (0 in this case).\n                \n            - `status`: A brief description of the error (empty in this case).\n                \n            - `isOperational`: A boolean indicating if the error is operational (true in this case).\n                \n\n#### Notes\n\n- Ensure that the `reviewId` provided in the request is valid; otherwise, a 404 Not Found error will be returned.\n    \n- The response structure may vary based on the outcome of the request, so handle both success and error responses appropriately."
+					},
+					"response": []
+				},
+				{
+					"name": "Post Reviews",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"review\": \"Amazing tour!!\",\n    \"rating\": 5,\n    \"tour\": \"68ba3302c5fc07003ff2c7f0\",\n    \"user\": \"68b8a6aa73220349c7395351\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/reviews",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"reviews"
+							]
+						},
+						"description": "## Add Review\n\nThis endpoint allows users to submit a review for a specific tour. By providing a review and a rating, users can share their experiences and feedback, which can help other potential customers in their decision-making process.\n\n### Request\n\n- **Method**: POST\n    \n- **URL**: `{{URL}}api/v1/reviews`\n    \n\n### Request Body\n\nThe request body must be a JSON object containing the following parameters:\n\n- **review** (string): A textual description of the user's experience with the tour. This should provide insights and details about what the user liked or disliked.\n    \n- **rating** (integer): A numerical rating for the tour, typically on a scale from 1 to 5, where 5 represents the highest level of satisfaction.\n    \n- **tour** (string): The unique identifier of the tour being reviewed. This links the review to a specific tour in the system.\n    \n- **user** (string): The unique identifier of the user submitting the review. This helps to associate the review with the user account.\n    \n\n### Response\n\nUpon a successful request, the API will return a response indicating the status of the review submission. The response typically includes:\n\n- **status** (string): Indicates whether the review was successfully added or if there were any errors.\n    \n- **reviewId** (string): The unique identifier for the newly created review, which can be used for future reference or modifications.\n    \n\n### Example\n\n#### Request\n\n``` json\n{\n  \"review\": \"Amazing tour!!\",\n  \"rating\": 5,\n  \"tour\": \"66ba3302c5fc07013ff2c7f1\",\n  \"user\": \"68b8a6aa73220345f73953a3\"\n}\n\n ```\n\n#### Response\n\n``` json\n{\n  \"status\": \"success\",\n  \"reviewId\": \"12345\"\n}\n\n ```\n\n### Notes\n\n- Ensure that the `tour` and `user` identifiers are valid and exist in the system before submitting the review.\n    \n- The review content should adhere to community guidelines to avoid rejection."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Review",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"rating\":1\n    \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/reviews/68bc524c9571f715beb3d1e0",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"reviews",
+								"68bc524c9571f715beb3d1e0"
+							]
+						},
+						"description": "## Update Review\n\nThis endpoint allows you to update an existing review by providing a new rating. It uses the HTTP PATCH method to modify the review identified by the unique review ID in the URL.\n\n### Request\n\n- **Method**: PATCH\n    \n- **Endpoint**: `{{URL}}api/v1/reviews/{reviewId}`\n    \n- **Path Parameter**:\n    \n    - `reviewId` (string): The unique identifier of the review you want to update. In this example, it is `68bc8fc3303675676hf03d8bc7`.\n        \n- **Request Body** (raw JSON):\n    \n    - `rating` (integer): The new rating to assign to the review. This should be a numeric value representing the review score.\n        \n\n### Example Request Body\n\n``` json\n{\n  \"rating\": 1\n}\n\n ```\n\n### Response\n\n- **Status Code**: 500\n    \n- **Content-Type**: application/json\n    \n- **Response Body**:\n    \n    - On success, the response will contain the updated review details. However, in this case, the response indicates an internal server error.\n        \n    - The response structure includes:\n        \n        - `status`: A string indicating the status of the request.\n            \n        - `message`: A string providing additional information about the request's outcome.\n            \n        - `stack`: A string containing stack trace information for debugging.\n            \n        - `error`: An object that includes:\n            \n            - `statusCode`: The HTTP status code of the error.\n                \n            - `status`: A string indicating the status of the error.\n                \n\n### Notes\n\n- Ensure that the rating value is valid and within the acceptable range defined by your application.\n    \n- A 500 status code indicates an internal server error, which may require further investigation to resolve."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Review",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/reviews/68bb044aeefe833015c744e3",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"reviews",
+								"68bb044aeefe833015c744e3"
+							]
+						},
+						"description": "## DELETE Review Endpoint\n\nThis endpoint is used to delete a specific review identified by its unique ID.\n\n### Request\n\n- **Method**: DELETE\n    \n- **URL**: `{{URL}}api/v1/reviews/{reviewId}`\n    \n- **Path Parameter**:\n    \n    - `reviewId`: The unique identifier of the review to be deleted (e.g., `5c1a3qed14eb4d17645c911d`).\n        \n\n### Response\n\n- **Status Code**: 204 No Content\n    \n- **Content-Type**: text/xml\n    \n\n### Notes\n\n- A successful deletion will result in a 204 status code, indicating that the request was processed successfully and there is no content to return.\n    \n- Ensure that the review ID provided in the request is valid and corresponds to an existing review in the system.\n    \n- This action is irreversible; once a review is deleted, it cannot be recovered."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Update Current User Data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"jwt\", pm.response.json().token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Yijia\",\n    \"role\":\"admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/users/updateMe",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"users",
+								"updateMe"
+							]
+						},
+						"description": "## Update User Information\n\nThis endpoint allows the authenticated user to update their personal information, such as their name and role within the application.\n\n### Request\n\n- **Method**: PATCH\n    \n- **Endpoint**: `{{URL}}api/v1/users/updateMe`\n    \n\n#### Headers\n\n- **Authorization**: Bearer token (required) - This token is used to authenticate the user making the request.\n    \n\n#### Request Body\n\nThe request body must be in JSON format and should contain the following fields:\n\n- **name** (string): The new name of the user.\n    \n- **role** (string): The new role assigned to the user (e.g., \"admin\", \"user\").\n    \n\n**Example Request Body**:\n\n``` json\n{\n  \"name\": \"Alex\",\n  \"role\": \"admin\"\n}\n\n ```\n\n### Response\n\nUpon a successful update, the response will typically include the following structure:\n\n- **status** (string): Indicates the status of the request (e.g., \"success\").\n    \n- **data** (object): Contains the updated user information, including the new name and role.\n    \n- **message** (string): A message providing additional context about the operation.\n    \n\n**Example Response**:\n\n``` json\n{\n  \"status\": \"success\",\n  \"data\": {\n    \"name\": \"Alex\",\n    \"role\": \"admin\"\n  },\n  \"message\": \"User information updated successfully.\"\n}\n\n ```\n\n### Notes\n\n- Ensure that the user is authenticated before making this request.\n    \n- Only the fields that need to be updated should be included in the request body."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Current User Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"jwt\", pm.response.json().token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"passwordCurrent\":\"newpassword\",\n    \"password\":\"newpassword1\",\n    \"passwordConfirm\":\"newpassword1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/users/updateMyPassword",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"users",
+								"updateMyPassword"
+							]
+						},
+						"description": "### Update User Password\n\nThis endpoint allows users to update their password. It requires the current password along with the new password and a confirmation of the new password to ensure accuracy.\n\n#### Request\n\n- **Method**: PATCH\n    \n- **URL**: `{{URL}}api/v1/users/updateMyPassword`\n    \n\n#### Request Headers\n\n- `Content-Type`: `application/json` (Ensure the request body is sent in JSON format)\n    \n\n#### Request Body\n\nThe request body must be in JSON format and contain the following fields:\n\n- **passwordCurrent** (string): The user's current password.\n    \n- **password** (string): The new password that the user wishes to set.\n    \n- **passwordConfirm** (string): A confirmation of the new password. This must match the `password` field.\n    \n\n**Example Request Body**:\n\n``` json\n{\n  \"passwordCurrent\": \"currentPassword123\",\n  \"password\": \"newPassword456\",\n  \"passwordConfirm\": \"newPassword456\"\n}\n\n ```\n\n#### Response\n\nThe response will indicate the success or failure of the password update operation. The structure of the response may include:\n\n- **status** (string): Indicates whether the request was successful or if there was an error.\n    \n- **message** (string): A descriptive message providing additional context about the operation's outcome.\n    \n\n**Example Response**:\n\n``` json\n{\n  \"status\": \"success\",\n  \"message\": \"Password updated successfully.\"\n}\n\n ```\n\nMake sure to handle any errors appropriately based on the response received."
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"jwt\", pm.response.json().token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\":\"newpass123\",\n    \"passwordConfirm\":\"newpass123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/users/resetPassword/c6d045c0eff921d19edc00a3b0d785a5970ba01bda97ebe3d5f669697556a28e",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"users",
+								"resetPassword",
+								"c6d045c0eff921d19edc00a3b0d785a5970ba01bda97ebe3d5f669697556a28e"
+							]
+						},
+						"description": "## Reset Password API\n\nThis endpoint allows users to reset their password. It is a PATCH request that updates the password for a specific user identified by a unique token in the URL.\n\n### Request\n\n**URL:** `{{URL}}api/v1/users/resetPassword/{token}`  \n**Method:** PATCH\n\n**Path Parameter:**\n\n- `token` (string): A unique identifier for the user session that is used to validate the password reset request.\n    \n\n**Request Body:**  \nThe request body must be in JSON format and include the following parameters:\n\n- `password` (string): The new password that the user wishes to set. This should meet the application's password policy requirements.\n    \n- `passwordConfirm` (string): A confirmation of the new password. This must match the `password` parameter to ensure accuracy.\n    \n\n### Example Request Body\n\n``` json\n{\n  \"password\": \"newpass123\",\n  \"passwordConfirm\": \"newpass123\"\n}\n\n ```\n\n### Response\n\nUpon a successful request, the server will respond with a status code of `200 OK`. The response may include a message indicating that the password has been successfully updated.\n\n#### Possible Status Codes:\n\n- `200 OK`: Password reset successful.\n    \n- `400 Bad Request`: The request was invalid. This may occur if the passwords do not match or if the password does not meet the required criteria.\n    \n- `404 Not Found`: The token provided is invalid or has expired.\n    \n- `500 Internal Server Error`: An unexpected error occurred on the server.\n    \n\n### Notes\n\nEnsure that the new password meets security requirements (e.g., minimum length, complexity) as defined by the application. The confirmation password must exactly match the new password to proceed with the reset."
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot Password",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/users/forgotPassword",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"users",
+								"forgotPassword"
+							]
+						},
+						"description": "### Forgot Password\n\nThis endpoint is used to initiate the password reset process for a user. The request requires the user's email address to send a password reset link.\n\n#### Request Body Format\n\nThe request body must be in JSON format and should include the following parameter:\n\n- **email** (string): The email address associated with the user's account. This is required to identify the user requesting the password reset.\n    \n\nExample request body:\n\n``` json\n{\n  \"email\": \"user@example.com\"\n}\n\n ```\n\n#### Important Headers\n\nMake sure to include the following headers in your request:\n\n- **Content-Type**: `application/json` - This header indicates that the request body is in JSON format.\n    \n\n#### Response Structure\n\nThe response will typically include a status code indicating the result of the password reset request. A successful request will return a 200 OK status, indicating that the password reset link has been sent to the provided email address. If the email is not associated with any account, an error status code will be returned along with a message detailing the issue.\n\nEnsure that the email provided is valid and correctly associated with a user account to successfully initiate the password reset process."
+					},
+					"response": []
+				},
+				{
+					"name": "Log In",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"jwt\", pm.response.json().token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"laura@example.com\",\n    \"password\": \"{{password}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/users/login",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"users",
+								"login"
+							]
+						},
+						"description": "## Login User\n\nThis endpoint allows users to log in to their account by providing their credentials. Upon successful authentication, the user will receive a response containing relevant user information and a session token.\n\n### Request\n\n**Method:** POST  \n**Endpoint:** `{{URL}}api/v1/users/login`\n\n**Request Body:**  \nThe request body must be in JSON format and include the following parameters:\n\n- **email** (string): The email address associated with the user's account.\n    \n- **password** (string): The user's password for authentication.\n    \n\n**Example Request Body:**\n\n``` json\n{\n  \"email\": \"user@example.com\",\n  \"password\": \"your_password\"\n}\n\n ```\n\n### Response\n\nUpon a successful login, the response will include:\n\n- **status** (string): Indicates the success or failure of the login attempt.\n    \n- **token** (string): A session token to be used for authenticated requests.\n    \n- **user** (object): Contains user-specific information such as user ID, name, and email.\n    \n\n**Example Response:**\n\n``` json\n{\n  \"status\": \"success\",\n  \"token\": \"your_session_token\",\n  \"user\": {\n    \"id\": \"user_id\",\n    \"name\": \"User Name\",\n    \"email\": \"user@example.com\"\n  }\n}\n\n ```\n\n### Notes\n\n- Ensure that the email and password are correctly formatted.\n    \n- Handle any errors appropriately based on the response status."
+					},
+					"response": []
+				},
+				{
+					"name": "Sign Up",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"jwt\", pm.response.json().token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"tester1\",\n    \"email\": \"tester@gmail.com\",\n    \"password\": \"12345678\",\n    \"passwordConfirm\": \"12345678\",\n    \"role\":\"guide\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/users/signup",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"users",
+								"signup"
+							]
+						},
+						"description": "# User Signup API\n\nThis endpoint allows new users to register by providing their details. Upon successful registration, the user will be created in the system with the specified role.\n\n## Request\n\n**Method:** POST  \n**Endpoint:** `{{URL}}api/v1/users/signup`\n\n### Request Body\n\nThe request body must be in JSON format and include the following parameters:\n\n| Parameter | Type | Description |\n| --- | --- | --- |\n| `name` | string | The full name of the user. |\n| `email` | string | The email address of the user. This must be unique. |\n| `password` | string | The password for the user account. Must meet security requirements. |\n| `passwordConfirm` | string | A confirmation of the password. Must match the `password` field. |\n| `role` | string | The role assigned to the user (e.g., 'guide'). |\n\n### Example Request Body\n\n``` json\n{\n  \"name\": \"tester1\",\n  \"email\": \"tester@gmail.com\",\n  \"password\": \"12345678\",\n  \"passwordConfirm\": \"12345678\",\n  \"role\": \"guide\"\n}\n\n ```\n\n## Response\n\nOn successful registration, the API will return a response containing the following structure:\n\n| Field | Type | Description |\n| --- | --- | --- |\n| `status` | string | The status of the request (e.g., \"success\"). |\n| `message` | string | A message indicating the result of the signup (e.g., \"User created successfully.\"). |\n| `data` | object | An object containing the user details. |\n\n### Example Response\n\n``` json\n{\n  \"status\": \"success\",\n  \"message\": \"User created successfully.\",\n  \"data\": {\n    \"id\": \"user_id\",\n    \"name\": \"tester1\",\n    \"email\": \"tester@gmail.com\",\n    \"role\": \"guide\"\n  }\n}\n\n ```\n\n## Notes\n\n- Ensure that all required fields are provided in the request body.\n    \n- The email must be unique; if the email is already registered, an error will be returned.\n    \n- Passwords must adhere to security standards to ensure account safety.\n    \n\nThis endpoint allows new users to register for an account in the system. By providing the necessary details, users can create an account and specify their role within the application.\n\n#### Request\n\n**Method:** POST  \n**Endpoint:** `{{URL}}api/v1/users/signup`\n\n**Request Body:**  \nThe request body must be in JSON format and include the following parameters:\n\n- **name** (string): The full name of the user.\n    \n- **email** (string): The email address of the user, which must be unique.\n    \n- **password** (string): The password chosen by the user for account security.\n    \n- **passwordConfirm** (string): A confirmation of the password to ensure accuracy.\n    \n- **role** (string): The role assigned to the user, which determines their permissions within the application (e.g., \"guide\").\n    \n\n**Example Request Body:**\n\n``` json\n{\n  \"name\": \"tester1\",\n  \"email\": \"tester@gmail.com\",\n  \"password\": \"12345678\",\n  \"passwordConfirm\": \"12345678\",\n  \"role\": \"guide\"\n}\n\n ```\n\n#### Response\n\nUpon a successful signup, the response will typically include a confirmation message and the details of the newly created user account. The structure of the response may include:\n\n- **status** (string): Indicates the success or failure of the signup process.\n    \n- **message** (string): A descriptive message about the signup status.\n    \n- **user** (object): Contains details of the registered user, such as their ID and role.\n    \n\n**Example Response:**\n\n``` json\n{\n  \"status\": \"success\",\n  \"message\": \"User registered successfully.\",\n  \"user\": {\n    \"id\": \"12345\",\n    \"name\": \"tester1\",\n    \"email\": \"tester@gmail.com\",\n    \"role\": \"guide\"\n  }\n}\n\n ```\n\n#### Notes\n\n- Ensure that the email provided is unique to avoid conflicts.\n    \n- Passwords must meet security requirements as specified by the application.\n    \n- The `password` and `passwordConfirm` fields must match for the signup to be successful."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tour/Reviews",
+			"item": [
+				{
+					"name": "Create New Review on Tour",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"rating\":1,\n    \"review\":\"terrible\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/tours/5c88fa8cf4afda39709c295d/reviews",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"tours",
+								"5c88fa8cf4afda39709c295d",
+								"reviews"
+							]
+						},
+						"description": "## Add Review for a Tour\n\nThis endpoint allows users to submit a review for a specific tour identified by its unique ID. The review includes a rating and a textual comment, which helps other users make informed decisions about the tour.\n\n### Request\n\n**Method:** POST  \n**Endpoint:** `{{URL}}api/v1/tours/{tourId}/reviews`  \n**Path Parameter:**\n\n- `tourId` (string): The unique identifier of the tour for which the review is being submitted.\n    \n\n**Request Body:**  \nThe request body must be in JSON format and include the following parameters:\n\n- `rating` (integer): A numerical rating for the tour, typically on a scale (e.g., 1 to 5).\n    \n- `review` (string): A textual review of the tour, providing feedback based on the user's experience.\n    \n\n**Example Request Body:**\n\n``` json\n{\n  \"rating\": 1,\n  \"review\": \"terrible\"\n}\n\n ```\n\n### Response\n\nUpon successful submission, the server will respond with a confirmation of the review submission. The structure of the response may include:\n\n- `status` (string): Indicates whether the submission was successful or if there was an error.\n    \n- `message` (string): A descriptive message regarding the outcome of the request.\n    \n- `reviewId` (string): The unique identifier for the newly created review.\n    \n\n### Usage Notes\n\n- Ensure that the `tourId` is valid and corresponds to an existing tour.\n    \n- The `rating` should be within the accepted range, and the `review` should be appropriately descriptive to provide valuable feedback.\n    \n- Handle responses appropriately to inform users of the success or failure of their review submission.\n    \n\nThis endpoint is essential for contributing user-generated content to the tour database, enhancing the overall experience for future customers."
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "https://postman-rest-api-learner.glitch.me/"
+		}
+	]
+}
