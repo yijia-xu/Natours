@@ -1,8 +1,23 @@
 extends base
 
 block content
-  main.main
-    section.product_section.layout_padding#products
+  section.slider_section
+    .container
+      .row
+        .col-md-6.col-lg-5
+          .detail-box
+            h1 Explore the World
+              br
+              | With Us
+            p Anything embarrassing hidden in the middle of text. All the Lorem Ipsuanything embarrassing hidden in the middle of text. All the Lorem Ipsumm
+            .btn-box
+              a.btn-1(href="#products") Read More
+              a.btn-2(href="#contact") Contact Us
+        .col-md-6.col-lg-7
+          .img-box
+            img(src="images/outdoor.png" alt="")
+  
+  section.product_section.layout_padding#products
       .container
         .heading_container.heading_center
           h2 Our Tours
@@ -42,4 +57,3 @@ block content
                       | #{tour.price}
                   .btn-box
                     a.btn-1(href=`/tour/${tour.slug}`) View Details
-
