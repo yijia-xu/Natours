@@ -1,25 +1,19 @@
 doctype html
 html(lang="en")
   head
-    meta(charset="utf-8")
-    meta(http-equiv="X-UA-Compatible" content="IE=edge")
-    meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
-    title Natours
+  meta(charset="utf-8")
+  meta(http-equiv="X-UA-Compatible" content="IE=edge")
+  meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+  title Natours
 
-    //- Google Fonts
-    link(href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet")
+  link(href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet")
+  link(rel="stylesheet" type="text/css" href="/css/bootstrap.css")
+  link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
+  link(rel="stylesheet" href="/css/style.css")
+  link(rel="stylesheet" href="/css/responsive.css")
 
-    //- Bootstrap CSS
-    link(rel="stylesheet" type="text/css" href="css/bootstrap.css")
+  block head
 
-    //- Font Awesome CDN
-    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
-
-    //- Custom CSS
-    link(rel="stylesheet" href="css/style.css")
-    link(rel="stylesheet" href="css/responsive.css")
-
-  
   body
     // HEADER
     include _header
@@ -31,7 +25,4 @@ html(lang="en")
     // FOOTER
     include _footer
     
-    //- script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js')
-    //- script(src='/js/mapbox.js')
-    //- script(src='/js/login.js')
     script(src='/js/bundle.js')
