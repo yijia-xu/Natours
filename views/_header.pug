@@ -1,0 +1,17 @@
+header.header_section
+  .container
+    nav.navbar.navbar-expand-lg.custom_nav-container
+      a.navbar-brand(href='/')
+        span Natours
+      button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+        span  
+      #navbarSupportedContent.collapse.navbar-collapse
+        ul.navbar-nav.ml-auto
+          li.nav-item.active
+            a.nav-link(href='/')
+              | All Tours 
+              span.sr-only (current)
+          li.nav-item
+            a.nav-link(href='/signup') Sign Up
+          li.nav-item
+            a.nav-link(href='/login') Log in
