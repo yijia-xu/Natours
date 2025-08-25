@@ -1,45 +1,59 @@
 extends base
 
 block content
-  main.main
-    section.product_section.layout_padding#products
-      .container
-        .heading_container.heading_center
-          h2 Our Tours
-          p Check out our most popular tours
-        .row
-          each tour in tours
-            .col-sm-6.col-lg-4
-              .box
-                .img-box
-                  img(src=`/img/tours/${tour.imageCover}`, alt=`${tour.name}`)
-                .detail-box
-                  a(href=`/tour/${tour.slug}`)= tour.name
-                  p.card__sub-heading= `${tour.difficulty} ${tour.duration}-day tour`
-                  
-                  
-                  .card__data
-                    svg.card__icon
-                      use(xlink:href='/img/icons.svg#icon-map-pin')
-                    span= tour.startLocation.description
-                  .card__data
-                    svg.card__icon
-                      use(xlink:href='/img/icons.svg#icon-calendar')
-                    span= tour.startDates[0].toLocaleString('en-us', {month: 'long', year: 'numeric'})
-                  .card__data
-                    svg.card__icon
-                      use(xlink:href='/img/icons.svg#icon-flag')
-                    span= `${tour.locations.length} stops`
-                  .card__data
-                    svg.card__icon
-                      use(xlink:href='/img/icons.svg#icon-user')
-                    span= `${tour.maxGroupSize} people`
-                  
-                  // price and button
-                  .price_box
-                    h6.price_heading
-                      span $ 
-                      | #{tour.price}
-                  .btn-box
-                    a.btn-1(href=`/tour/${tour.slug}`) View Details
-
+  section.slider_section
+    .container
+      .row
+        .col-md-6.col-lg-5
+          .detail-box
+            h1 Explore the World
+              br
+              | With Us
+            p Anything embarrassing hidden in the middle of text. All the Lorem Ipsuanything embarrassing hidden in the middle of text. All the Lorem Ipsumm
+            .btn-box
+              a.btn-1(href="#products") Read More
+              a.btn-2(href="#contact") Contact Us
+        .col-md-6.col-lg-7
+          .img-box
+            img(src="images/outdoor.png" alt="")
+  
+  section.product_section.layout_padding#products
+  .container
+    .heading_container.heading_center
+      h2 Our Tours
+      p Check out our most popular tours
+    .row
+      each tour in tours
+        .col-sm-6.col-lg-4
+          .card
+            .img-box
+              img(src=`/img/tours/${tour.imageCover}`, alt=`${tour.name}`)
+            .detail-box
+              h3.card-title.text-center #{tour.name}
+              p.card__sub-heading.text-center #{tour.difficulty} #{tour.duration}-DAY TOUR
+              p.card__description.text-center #{tour.summary}
+              .card__data-row.justify-center
+                .card__data
+                  svg.card__icon
+                    use(xlink:href='/img/icons.svg#icon-map-pin')
+                  span #{tour.startLocation.description}
+                .card__data
+                  svg.card__icon
+                    use(xlink:href='/img/icons.svg#icon-calendar')
+                  span= tour.startDates[0].toLocaleString('en-us', {month: 'long', year: 'numeric'})
+              .card__data-row.justify-center
+                .card__data
+                  svg.card__icon
+                    use(xlink:href='/img/icons.svg#icon-flag')
+                  span #{tour.locations.length} stops
+                .card__data
+                  svg.card__icon
+                    use(xlink:href='/img/icons.svg#icon-user')
+                  span #{tour.maxGroupSize} people
+              .card__footer.text-center
+                .card__price $#{tour.price} 
+                  span /person
+                .card__rating #{tour.ratingsAverage} 
+                  span (#{tour.ratingsQuantity})
+              .card__btn.text-center
+                a.btn.btn-1(href=`/tour/${tour.slug}`) View Details
