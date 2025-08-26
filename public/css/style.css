@@ -989,3 +989,461 @@ html {
   color: #888;
   font-size: 1.1rem;
 }
+
+/* --- Tour Page Modern Styles --- */
+
+/* Hero Section */
+.section-header {
+  background: #fff;
+  border-radius: 1.2rem;
+  box-shadow: 0 2px 12px rgba(44,62,80,0.04);
+  margin-bottom: 2.5rem;
+  padding-bottom: 0.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.header__hero {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.header__hero-overlay {
+  display: none; /* 去除绿色遮罩 */
+}
+.header__hero-img {
+  width: 100%;
+  height: 320px;
+  object-fit: contain;
+  border-radius: 1.2rem;
+  background: #f4f7fa;
+  box-shadow: 0 2px 12px rgba(44,62,80,0.08);
+  display: block;
+}
+.heading-box {
+  position: absolute;
+  left: 2rem;
+  bottom: 2rem;
+  background: rgba(255,255,255,0.92);
+  border-radius: 0.8rem;
+  padding: 1.2rem 2rem;
+  box-shadow: 0 2px 8px rgba(44,62,80,0.06);
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+.heading-primary {
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: #232323;
+  margin: 0;
+  letter-spacing: 0.01em;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.heading-primary span {
+  color: #232323;
+  background: none;
+  padding: 0;
+}
+.heading-box__text {
+  font-size: 1.1rem;
+  color: #666;
+  margin-left: 0.5rem;
+}
+
+/* Overview Section */
+.section-overview {
+  background: #fafbfc;
+  border-radius: 1rem;
+  margin: 2rem 0;
+  padding: 2rem 0;
+}
+.overview-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+.overview-card {
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px rgba(44,62,80,0.04);
+  padding: 2rem 1.5rem;
+  flex: 1 1 300px;
+  min-width: 260px;
+}
+.overview-card__title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #232323;
+  margin-bottom: 1.2rem;
+  letter-spacing: 0.01em;
+}
+.overview-box__icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: #888;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+.overview-box__label {
+  color: #555;
+  font-weight: 600;
+  margin-right: 0.5rem;
+}
+.overview-box__text {
+  color: #232323;
+}
+
+/* Guide Card */
+.guide-card {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.guide-card__img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 1rem;
+}
+.guide-card__name {
+  font-weight: 700;
+  color: #232323;
+  margin-right: 0.5rem;
+}
+.guide-card__role {
+  font-size: 0.95rem;
+  color: #888;
+}
+
+/* Description Section */
+.section-description {
+  background: #fff;
+  border-radius: 1rem;
+  margin: 2rem 0;
+  padding: 2rem 0;
+}
+.description-card__title {
+  font-size: 1.3rem;
+  color: #232323;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+}
+.description__text {
+  color: #444;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 0.7rem;
+}
+
+/* Gallery Section */
+.section-pictures {
+  background: #fafbfc;
+  border-radius: 1rem;
+  margin: 2rem 0;
+  padding: 2rem 0;
+}
+.section-title {
+  font-size: 1.3rem;
+  color: #232323;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  text-align: center;
+}
+.gallery-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+}
+.picture-box {
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px rgba(44,62,80,0.04);
+  flex: 1 1 220px;
+  min-width: 180px;
+  max-width: 320px;
+  overflow: hidden;
+  position: relative;
+}
+.picture-box__img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  background: #f4f7fa;
+  display: block;
+}
+.picture-box__overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255,255,255,0.7);
+  text-align: right;
+  padding: 0.2rem 0.7rem;
+}
+.picture-box__number {
+  color: #888;
+  font-size: 0.95rem;
+}
+
+/* Map Section */
+.section-map {
+  background: #fff;
+  border-radius: 1rem;
+  margin: 2rem 0;
+  padding: 2rem 0;
+  box-shadow: 0 2px 12px rgba(44,62,80,0.04);
+}
+.map-container {
+  width: 100%;
+  height: 320px;
+  border-radius: 1rem;
+  overflow: hidden;
+  margin-top: 1rem;
+}
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+/* Reviews Section */
+.section-reviews {
+  background: #fafbfc;
+  border-radius: 1rem;
+  margin: 2rem 0;
+  padding: 2rem 0;
+}
+.reviews-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+}
+.review-card {
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px rgba(44,62,80,0.04);
+  padding: 1.2rem 1rem;
+  flex: 1 1 220px;
+  min-width: 180px;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.review-card__avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 0.7rem;
+}
+.review-card__user {
+  font-weight: 700;
+  color: #232323;
+  margin-bottom: 0.3rem;
+}
+.review-card__text {
+  color: #444;
+  font-size: 1rem;
+  margin-bottom: 0.7rem;
+  text-align: center;
+}
+.review-card__rating {
+  font-size: 1.1rem;
+  color: #f89646;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.2rem;
+}
+
+/* CTA Section */
+.section-cta {
+  background: #fff;
+  border-radius: 1rem;
+  margin: 2rem 0;
+  padding: 2rem 0;
+}
+.cta-card {
+  background: #fafbfc;
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px rgba(44,62,80,0.04);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 2rem;
+  gap: 2rem;
+}
+.cta-card__images {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.cta-card__image {
+  width: 64px;
+  height: 64px;
+  border-radius: 1rem;
+  object-fit: cover;
+  background: #f3f3f3;
+  box-shadow: 0 2px 8px rgba(44,62,80,0.04);
+}
+.cta-card__image--logo {
+  background: linear-gradient(135deg, #f89646 0%, #4E7F6A 100%);
+  padding: 0.5rem;
+  border-radius: 1rem;
+}
+.cta-card__content {
+  flex: 1 1 200px;
+}
+.cta-card__title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #232323;
+  margin-bottom: 0.7rem;
+}
+.cta-card__text {
+  color: #444;
+  font-size: 1.05rem;
+  margin-bottom: 1.2rem;
+}
+.cta-card__btn {
+  background: #4E7F6A;
+  color: #fff;
+  border-radius: 2rem;
+  padding: 0.7rem 2.2rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border: none;
+  transition: background 0.2s;
+}
+.cta-card__btn:hover {
+  background: #35594a;
+  color: #fff;
+}
+
+/* tour页绿色和橙色点缀 */
+.section-header,
+.section-overview,
+.section-description,
+.section-pictures,
+.section-map,
+.section-reviews,
+.section-cta {
+  border-radius: 1.2rem;
+  box-shadow: 0 2px 12px rgba(44,62,80,0.04);
+  margin-bottom: 2rem;
+  background: #fff;
+}
+
+/* 绿色主色点缀 */
+.heading-primary,
+.overview-card__title,
+.cta-card__title {
+  color: #4E7F6A;
+}
+
+.overview-box__icon {
+  fill: #4E7F6A;
+}
+
+.cta-card__btn {
+  background: #4E7F6A;
+  color: #fff;
+  border-radius: 2rem;
+  padding: 0.7rem 2.2rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border: none;
+  transition: background 0.2s;
+}
+.cta-card__btn:hover {
+  background: #35594a;
+  color: #fff;
+}
+
+/* 橙色点缀用于评分星星和强调 */
+.review-card__rating i.fa-star,
+.review-card__rating i.fa-star-half-o,
+.review-card__rating i.fa-star-o {
+  color: #f89646 !important;
+}
+
+.cta-card__image--logo {
+  background: linear-gradient(135deg, #f89646 0%, #4E7F6A 100%);
+  padding: 0.5rem;
+  border-radius: 1rem;
+}
+
+.btn-1,
+.card__btn .btn-1 {
+  background: #fff;
+  color: #4E7F6A;
+  border: 2px solid #4E7F6A;
+  border-radius: 2rem;
+  font-weight: 700;
+  transition: all 0.2s;
+}
+.btn-1:hover,
+.card__btn .btn-1:hover {
+  background: #4E7F6A;
+  color: #fff;
+  border-color: #4E7F6A;
+}
+
+.btn-2 {
+  background: #f89646;
+  color: #fff;
+  border: 2px solid #f89646;
+  border-radius: 2rem;
+  font-weight: 700;
+  transition: all 0.2s;
+}
+.btn-2:hover {
+  background: #fff;
+  color: #f89646;
+  border-color: #f89646;
+}
+
+/* 其它橙色强调 */
+a, a:focus, a:hover {
+  color: #f89646;
+  transition: color 0.2s;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .header__hero, .header__hero-img {
+    height: 200px;
+  }
+  .overview-grid, .gallery-grid, .reviews-grid {
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .overview-card, .picture-box, .review-card {
+    min-width: 0;
+    max-width: 100%;
+  }
+}
+@media (max-width: 600px) {
+  .section-header, .section-overview, .section-description, .section-pictures, .section-map, .section-reviews, .section-cta {
+    padding: 1rem 0.2rem;
+    margin: 1rem 0;
+  }
+  .heading-box {
+    position: static;
+    background: none;
+    box-shadow: none;
+    padding: 0.5rem 0;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .header__hero, .header__hero-img {
+    height: 120px;
+  }
+  .picture-box__img {
+    height: 100px;
+  }
+}
