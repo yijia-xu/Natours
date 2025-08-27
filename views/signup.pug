@@ -4,8 +4,8 @@ block content
   main.main
     section.login-section
       .login-card
-        h2 Log into your account
-        form.form.form--login
+        h2 Sign up for your account
+        form.form.form--login(action="/signup" method="POST")
           .form__group
             label(for="email") Email address
             input#email.form__input(type="email" name="email" placeholder="you@example.com" required)
@@ -13,4 +13,4 @@ block content
             label(for="password") Password
             input#password.form__input(type="password" name="password" placeholder="••••••••" required minlength="8")
           .form__group(style="text-align: center;")
-            button.btn-2(type="submit") Log In
+            button.btn-2(type="submit") Sign Up

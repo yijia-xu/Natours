@@ -7,6 +7,8 @@ const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
+const jwt = require('jsonwebtoken');
+const cors = require('cors');
 
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
@@ -66,6 +68,10 @@ const limiter = rateLimit({
 app.use('/api', limiter);
 app.use(express.json({ limit: '10kb' }));
 app.use(cookieParser());
+app.use(cors({
+  origin: 'http://127.0.0.1:3000', // 前端页面地址
+  credentials: true
+}));
 
 // data sanitization
 app.use(mongoSanitize());
@@ -85,9 +91,31 @@ app.use(hpp({
 
 app.use((req, res, next) => {
     req.requestTime = new Date().toISOString();
-    //console.log(req.cookies);
+    console.log(req.cookies);
     next();
 });
+
+
+app.use(async (req, res, next) => {
+  if (req.cookies && req.cookies.jwt) {
+    try {
+      const decoded = jwt.verify(req.cookies.jwt, process.env.JWT_SECRET);
+      const currentUser = await User.findById(decoded.id);
+      if (currentUser) {
+        res.locals.user = currentUser.toObject ? currentUser.toObject() : currentUser;
+      } else {
+        res.locals.user = null;
+      }
+    } catch (err) {
+      res.locals.user = null;
+    }
+  } else {
+    res.locals.user = null;
+  }
+  next();
+});
+
+
 
 
 

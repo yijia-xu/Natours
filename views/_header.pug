@@ -11,7 +11,17 @@ header.header_section
             a.nav-link(href='/')
               | All Tours 
               span.sr-only (current)
-          li.nav-item
-            a.nav-link(href='/signup') Sign Up
-          li.nav-item
-            a.nav-link(href='/login') Log in
+          if user
+            li.nav-item
+              a.nav-link(href='/me')
+                if user.photo
+                  span.header-avatar
+                    img.nav__user-img(src=`/img/users/${user.photo}` alt=`Photo of ${user.name}`)
+                span= user.name && user.name.split ? user.name.split(' ')[0] : ''
+            li.nav-item
+              a.nav-link.nav__el--logout(href='#') Log out
+          else
+            li.nav-item
+              a.nav-link(href='/signup') Sign Up
+            li.nav-item
+              a.nav-link(href='/login') Log in

@@ -307,7 +307,65 @@ a:focus {
   top: 10px;
 }
 
+/* Header avatar和用户名对齐优化 */
+.header-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  margin-right: 0.5rem;
+  border-radius: 50%;
+  border: 2px solid #4E7F6A;
+  background: #fff;
+  overflow: hidden;
+  vertical-align: middle;
+}
 
+.nav__user-img {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+
+/* 让用户名和头像垂直居中对齐 */
+.navbar-nav .nav-link {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 0 1rem;
+}
+
+/* 登录/注册按钮美化为圆角框 */
+.navbar-nav .nav-link[href="/login"],
+.navbar-nav .nav-link[href="/signup"] {
+  border: 1.5px solid #4E7F6A;
+  border-radius: 2rem;
+  padding: 0.25rem 1.1rem;
+  margin-left: 0.5rem;
+  background: #fff;
+  color: #4E7F6A !important;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+  font-weight: 600;
+}
+
+.navbar-nav .nav-link[href="/login"]:hover,
+.navbar-nav .nav-link[href="/signup"]:hover {
+  background: #4E7F6A;
+  color: #fff !important;
+  border-color: #4E7F6A;
+}
+
+/* 让所有右侧菜单项高度一致 */
+.navbar-nav .nav-item {
+  display: flex;
+  align-items: center;
+  height: 40px;
+}
 
 /*end header section*/
 /* slider section */
