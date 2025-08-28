@@ -8,9 +8,14 @@ mixin navItem(link, text, icon, active)
       | #{text}
 
 block content
+  link(rel="stylesheet", href="/css/account.css")
   main.main
     .user-view
+      // Sidebar with user info and nav
       nav.user-view__menu
+        .user-view__profile
+          img.user-view__avatar(src=`/img/users/${user.photo}`, alt='User photo')
+          h4.user-view__welcome Hello, #{user.name}
         ul.side-nav
           +navItem('#', 'Settings', 'settings', true)
           +navItem('#', 'My bookings', 'briefcase')
@@ -26,14 +31,11 @@ block content
               +navItem('#', 'Manage reviews', 'star')
               +navItem('#', 'Manage bookings', 'briefcase')
 
+      // Content area
       .user-view__content
-        .user-view__form-container
+        // Account settings card
+        .user-view__form-container.card
           h2.heading-secondary.ma-bt-md Your account settings
-          
-          //- WITHOUT API
-          //- form.form.form-user-data(action='/submit-user-data' method='POST')
-          
-          //- WITH API
           form.form.form-user-data
             .form__group
               label.form__label(for='name') Name
@@ -46,10 +48,11 @@ block content
               a.btn-text(href='') Choose new photo
             .form__group.right
               button.btn.btn--small.btn--green Save settings
-              
-        .line &nbsp;
-        
-        .user-view__form-container
+
+        hr.line
+
+        // Password change card
+        .user-view__form-container.card
           h2.heading-secondary.ma-bt-md Password change
           form.form.form-user-password
             .form__group

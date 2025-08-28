@@ -95,6 +95,7 @@ const currentUser = await User.findById(decoded.id);
     }
 
     req.user = currentUser; // grant access to protected route
+    res.locals.user = currentUser;
     next();
 });
 

@@ -1,0 +1,182 @@
+/* 页面整体布局 */
+.user-view {
+  display: flex;
+  min-height: 100vh;
+  background: #f9f9f9;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* 左侧菜单栏 */
+.user-view__menu {
+  width: 250px;
+  background: #4E7F6A; /* 主绿 */
+  color: #fff;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-view__profile {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.user-view__avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  border: 2px solid #fff;
+}
+
+.user-view__welcome {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.side-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.side-nav li {
+  margin-bottom: 1rem;
+}
+
+.side-nav a {
+  text-decoration: none;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  font-size: 0.95rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+  transition: background 0.2s ease;
+}
+
+.side-nav a:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.side-nav svg {
+  width: 18px;
+  height: 18px;
+  margin-right: 0.6rem;
+  fill: currentColor;
+}
+
+.side-nav--active a {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Admin 部分 */
+.admin-nav {
+  margin-top: 2rem;
+}
+
+.admin-nav__heading {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  color: #e6e6e6;
+  letter-spacing: 1px;
+}
+
+/* 右侧内容区 */
+.user-view__content {
+  flex: 1;
+  padding: 3rem;
+}
+
+.card {
+  background: #fff;
+  padding: 2rem 2.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  margin-bottom: 2rem;
+}
+
+.heading-secondary {
+  font-size: 1.3rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+/* 表单样式 */
+.form__group {
+  margin-bottom: 1.5rem;
+}
+
+.form__label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #555;
+}
+
+.form__input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.form__photo-upload {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.form__user-photo {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ddd;
+}
+
+/* 按钮 */
+.btn {
+  display: inline-block;
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn--green {
+  background: #f89646; /* 橙色按钮 */
+  color: #fff;
+}
+
+.btn--green:hover {
+  background: #e07e2d; /* 深橙 hover */
+}
+
+.btn--small {
+  font-size: 0.85rem;
+  padding: 0.5rem 1rem;
+}
+
+.btn-text {
+  color: #f89646;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.btn-text:hover {
+  text-decoration: underline;
+}
+
+/* 分割线 */
+.line {
+  border: 0;
+  border-top: 1px solid #eee;
+  margin: 2rem 0;
+}
