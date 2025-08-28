@@ -13,20 +13,22 @@ exports.getOverview = catchAsync(async (req, res, next) => {
 
 
 exports.getTour = catchAsync(async (req, res, next) => {
+  // get the data, for the requested tour (including reviews and guides)
   const tour = await Tour.findOne({ slug: req.params.slug }).populate({
     path: 'reviews',
-    fields: 'reviews rating user',
+    fields: 'review rating user'
   });
-  res
-    .status(200)
-    .set(
-      'Content-Security-Policy',
-      "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data: https://*.tile.openstreetmap.org;object-src 'none';script-src https://cdnjs.cloudflare.com 'self' blob: ;script-src-attr 'none';style-src 'self' https: 'unsafe-inline';connect-src 'self' https://cdnjs.cloudflare.com;upgrade-insecure-requests;"
-    )
-    .render('tour', {
-      title: `${tour.name}`,
-      tour,
-    });
+
+  if (!tour) {
+    return next(new AppError('There is no tour with that name.', 404));
+  }
+
+  // build template
+  // render template using data from 1)
+  res.status(200).render('tour', {
+    title: `${tour.name} Tour`,
+    tour
+  });
 });
 
 exports.getLoginForm = (req, res) => {
