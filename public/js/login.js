@@ -5,21 +5,21 @@ const login = async (email, password) => {
       { email, password },
       { withCredentials: true }
     );
-    console.log('✅ login response:', res.data);
+    if (res.data.status === 'success') {
+      window.location.assign('/');
+    }
   } catch (err) {
-    const msg = err.response?.data?.message || 'Login failed';
-    alert(msg);
     console.error('❌ login error:', err.response?.data || err.message);
   }
 };
 
 const logout = async () => {
   try {
-    const res = await axios.get(
+    await axios.get(
       'http://127.0.0.1:3000/api/v1/users/logout',
       { withCredentials: true }
     );
-    console.log('✅ logout response:', res.data);
+    window.location.replace('/');
   } catch (err) {
     console.error('❌ logout error:', err.response?.data || err.message);
   }
@@ -35,4 +35,13 @@ document.addEventListener('DOMContentLoaded', () => {
       await login(email, password);
     });
   }
+
+
+  document.body.addEventListener('click', async (e) => {
+    const logoutBtn = e.target.closest('.nav__el--logout');
+    if (logoutBtn) {
+        e.preventDefault();
+        await logout();
+    }
+});
 });

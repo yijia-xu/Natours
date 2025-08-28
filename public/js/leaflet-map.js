@@ -1,43 +1,42 @@
-const locations = JSON.parse(document.getElementById('map').dataset.locations);
-const map = L.map('map', { zoomControl: false });
+const mapEl = document.getElementById('map');
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution:
-    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-}).addTo(map);
+if (mapEl) {
+  const locations = JSON.parse(mapEl.dataset.locations);
 
-var greenIcon = L.icon({
-  iconUrl: '/img/pin.png',
-  iconSize: [32, 40], // size of the icon
-  iconAnchor: [16, 45], // point of the icon which will correspond to marker's location
-  popupAnchor: [0, -50], // point from which the popup should open relative to the iconAnchor
-});
+  const map = L.map('map', { zoomControl: false, scrollWheelZoom: false });
 
-// add locations to map
-const points = [];
-locations.forEach((loc) => {
-  // Create points
-  points.push([loc.coordinates[1], loc.coordinates[0]]);
- 
-  // Add markers
-  L.marker([loc.coordinates[1], loc.coordinates[0]], { icon: greenIcon })
-    .addTo(map)
-    // Add popup
-    .bindPopup(`<p>Day ${loc.day}: ${loc.description}</p>`, {
-      autoClose: false,
-      className: 'mapPopup',
-    })
-    .on('mouseover', function (e) {
-      this.openPopup();
-    })
-    .on('mouseout', function (e) {
-      this.closePopup();
-    })
-    .openPopup();
-});
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution:
+      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  }).addTo(map);
 
-const bounds = L.latLngBounds(points).pad(0.5);
-map.fitBounds(bounds);
- 
-// Disable scroll on map
-map.scrollWheelZoom.disable();
+  const greenIcon = L.icon({
+    iconUrl: '/img/pin.png',
+    iconSize: [32, 40],
+    iconAnchor: [16, 45],
+    popupAnchor: [0, -50],
+  });
+
+  const points = [];
+  locations.forEach((loc) => {
+    points.push([loc.coordinates[1], loc.coordinates[0]]);
+
+    L.marker([loc.coordinates[1], loc.coordinates[0]], { icon: greenIcon })
+      .addTo(map)
+      .bindPopup(`<p>Day ${loc.day}: ${loc.description}</p>`, {
+        autoClose: false,
+        className: 'mapPopup',
+      })
+      .on('mouseover', function () {
+        this.openPopup();
+      })
+      .on('mouseout', function () {
+        this.closePopup();
+      });
+  });
+
+  const bounds = L.latLngBounds(points).pad(0.5);
+  map.fitBounds(bounds);
+
+  map.scrollWheelZoom.disable();
+}

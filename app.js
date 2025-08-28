@@ -28,14 +28,27 @@ app.use(
   helmet({ crossOriginResourcePolicy: false, crossOriginEmbedderPolicy: false })
 );
 
-const scriptSrcUrls = ['https://unpkg.com/', 'https://tile.openstreetmap.org'];
+const scriptSrcUrls = [
+  'https://unpkg.com/',
+  'https://tile.openstreetmap.org',
+  'https://cdnjs.cloudflare.com',
+  'https://cdn.jsdelivr.net'
+];
 const styleSrcUrls = [
   'https://unpkg.com/',
   'https://tile.openstreetmap.org',
   'https://fonts.googleapis.com/',
+  'https://cdnjs.cloudflare.com'
 ];
-const connectSrcUrls = ['https://unpkg.com', 'https://tile.openstreetmap.org'];
-const fontSrcUrls = ['fonts.googleapis.com', 'fonts.gstatic.com'];
+
+const connectSrcUrls = [
+  'https://unpkg.com',
+  'https://tile.openstreetmap.org',
+  'https://cdn.jsdelivr.net' 
+];
+
+const fontSrcUrls = ['fonts.googleapis.com', 'fonts.gstatic.com',
+  'https://cdnjs.cloudflare.com'];
  
 //set security http headers
 app.use(
