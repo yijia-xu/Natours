@@ -263,7 +263,7 @@ a:focus {
   top: 10px;
 }
 
-/* Header avatar和用户名对齐优化 */
+
 .header-avatar {
   display: inline-flex;
   align-items: center;
@@ -296,7 +296,6 @@ a:focus {
   padding: 0 1rem;
 }
 
-/* 登录/注册按钮美化为圆角框 */
 .navbar-nav .nav-link[href="/login"],
 .navbar-nav .nav-link[href="/signup"] {
   border: 1.5px solid #4E7F6A;
@@ -1252,7 +1251,6 @@ html {
   background: #fff;
 }
 
-/* 绿色主色点缀 */
 .heading-primary,
 .overview-card__title,
 .cta-card__title {
@@ -1321,7 +1319,6 @@ html {
   border-color: #f89646;
 }
 
-/* 其它橙色强调 */
 a, a:focus, a:hover {
   color: #f89646;
   transition: color 0.2s;
