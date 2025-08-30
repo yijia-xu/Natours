@@ -1,16 +1,25 @@
+
 extends base
+block scripts
+  script(src="/js/signup.js")
 
 block content
   main.main
     section.login-section
       .login-card
         h2 Sign up for your account
-        form.form.form--login(action="/signup" method="POST")
+        form.form.form--signup
+          .form__group
+            label(for="name") Name
+            input#name.form__input(type="text" name="name" placeholder="Your name" required)
           .form__group
             label(for="email") Email address
             input#email.form__input(type="email" name="email" placeholder="you@example.com" required)
           .form__group
             label(for="password") Password
             input#password.form__input(type="password" name="password" placeholder="••••••••" required minlength="8")
+          .form__group
+            label(for="passwordConfirm") Confirm password
+            input#passwordConfirm.form__input(type="password" name="passwordConfirm" placeholder="Repeat password" required minlength="8")
           .form__group(style="text-align: center;")
             button.btn-2(type="submit") Sign Up

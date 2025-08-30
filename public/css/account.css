@@ -1,4 +1,4 @@
-/* 页面整体布局 */
+
 .user-view {
   display: flex;
   min-height: 100vh;
@@ -6,10 +6,9 @@
   font-family: "Segoe UI", Arial, sans-serif;
 }
 
-/* 左侧菜单栏 */
 .user-view__menu {
   width: 250px;
-  background: #4E7F6A; /* 主绿 */
+  background: #4E7F6A; 
   color: #fff;
   padding: 2rem 1.5rem;
   display: flex;
@@ -71,7 +70,6 @@
   background: rgba(255, 255, 255, 0.25);
 }
 
-/* Admin 部分 */
 .admin-nav {
   margin-top: 2rem;
 }
@@ -84,7 +82,6 @@
   letter-spacing: 1px;
 }
 
-/* 右侧内容区 */
 .user-view__content {
   flex: 1;
   padding: 3rem;
@@ -104,7 +101,6 @@
   margin-bottom: 1.5rem;
 }
 
-/* 表单样式 */
 .form__group {
   margin-bottom: 1.5rem;
 }
@@ -139,7 +135,6 @@
   border: 2px solid #ddd;
 }
 
-/* 按钮 */
 .btn {
   display: inline-block;
   border: none;
@@ -174,7 +169,6 @@
   text-decoration: underline;
 }
 
-/* 分割线 */
 .line {
   border: 0;
   border-top: 1px solid #eee;

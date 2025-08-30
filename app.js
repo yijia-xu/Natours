@@ -80,9 +80,10 @@ const limiter = rateLimit({
 
 app.use('/api', limiter);
 app.use(express.json({ limit: '10kb' }));
+app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 app.use(cookieParser());
 app.use(cors({
-  origin: 'http://127.0.0.1:3000', // 前端页面地址
+  origin: 'http://127.0.0.1:3000', 
   credentials: true
 }));
 
