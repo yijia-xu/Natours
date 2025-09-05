@@ -4,8 +4,9 @@
   "description": "A project built in Nodejs, Express, and mongoDB",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon server.js",
-    "start:prod": "NODE_ENV=production nodemon server.js",
+    "start": "node server.js",
+    "start:dev": "nodemon server.js",
+    "start:prod": "NODE_ENV=production node server.js",
     "debug": "node --inspect server.js"
   },
   "repository": {
@@ -50,5 +51,8 @@
     "eslint-plugin-prettier": "^5.4.1",
     "eslint-plugin-react": "^7.37.5",
     "prettier": "^3.5.3"
+  },
+  "engines": {
+    "node": "20.x"
   }
 }
