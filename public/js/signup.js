@@ -1,9 +1,13 @@
 
 async function signup(name, email, password, passwordConfirm) {
   try {
+    const isRender = window.location.hostname.includes('onrender.com');
+    const baseURL = isRender
+      ? 'https://natours-cxwn.onrender.com'
+      : '';
     const res = await axios({
       method: "POST",
-      url: "/api/v1/users/signup",
+      url: baseURL + "/api/v1/users/signup",
       data: {
         name,
         email,

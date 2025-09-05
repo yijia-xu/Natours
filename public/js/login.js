@@ -1,7 +1,11 @@
 const login = async (email, password) => {
   try {
+    const isRender = window.location.hostname.includes('onrender.com');
+    const baseURL = isRender
+      ? 'https://natours-cxwn.onrender.com'
+      : '';
     const res = await axios.post(
-      'http://127.0.0.1:3000/api/v1/users/login',
+      baseURL + '/api/v1/users/login',
       { email, password },
       { withCredentials: true }
     );
@@ -15,8 +19,12 @@ const login = async (email, password) => {
 
 const logout = async () => {
   try {
+    const isRender = window.location.hostname.includes('onrender.com');
+    const baseURL = isRender
+      ? 'https://natours-cxwn.onrender.com'
+      : '';
     await axios.get(
-      'http://127.0.0.1:3000/api/v1/users/logout',
+      baseURL + '/api/v1/users/logout',
       { withCredentials: true }
     );
     window.location.replace('/');

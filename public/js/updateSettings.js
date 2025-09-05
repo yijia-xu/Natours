@@ -2,10 +2,14 @@
 // type is either 'password' or 'data'
 async function updateSettings(data, type) {
   try {
+    const isRender = window.location.hostname.includes('onrender.com');
+    const baseURL = isRender
+      ? 'https://natours-cxwn.onrender.com'
+      : '';
     const url =
       type === 'password'
-        ? 'http://127.0.0.1:3000/api/v1/users/updateMyPassword'
-        : 'http://127.0.0.1:3000/api/v1/users/updateMe';
+        ? baseURL + '/api/v1/users/updateMyPassword'
+        : baseURL + '/api/v1/users/updateMe';
 
     const res = await axios({
       method: 'PATCH',
@@ -17,7 +21,6 @@ async function updateSettings(data, type) {
       alert(type.toUpperCase() + ' updated successfully!');
     }
   } catch (err) {
-    // 更详细的错误输出
     console.error('AXIOS ERROR:', err);
     if (err.response) {
       console.error('Response data:', err.response.data);
