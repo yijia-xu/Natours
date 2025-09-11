@@ -66,4 +66,12 @@ You can explore all API endpoints and test requests via Postman:
 
 Homepage:
 
-![Description](./assets/a5edas.gif)
+![Description](./assets/home.gif)
+
+Tours Page:
+
+![Description](./assets/tours_page.gif)
+
+Login Page:
+
+![Description](./assets/login.png)
