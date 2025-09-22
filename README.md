@@ -6,7 +6,7 @@
 
 Natours is a comprehensive tour booking web application built using Node.js, Express, and MongoDB. It offers a seamless platform for users to explore, book, and manage tours, and provides administrators and guides with robust tools to manage and oversee the platform's operations.
 
-### Key Features
+## Key Features
 
 - **User Authentication & Authorization**: Secure sign-up, login, and password management.
 - **User Profiles**: Users can update personal information, including username, email, and password.
@@ -16,7 +16,7 @@ Natours is a comprehensive tour booking web application built using Node.js, Exp
 - **Payment Integration**: Secure payment processing for bookings.
 - **Admin Dashboard**: Admins can oversee all user activities, bookings, and reviews.
 
-### Technologies Used
+## Technologies Used
 
 - **Backend**: Node.js, Express.js
 - **Database**: MongoDB
@@ -28,7 +28,7 @@ Natours is a comprehensive tour booking web application built using Node.js, Exp
 - **Frontend**: Pug Template Engine
 - **Deployment**: Render
 
-### Installation & Setup
+## Installation & Setup
 
 **1. Clone the repository**
 ``git clone https://github.com/yijia-xu/Natours.git` `cd Natours``
@@ -57,14 +57,14 @@ Natours is a comprehensive tour booking web application built using Node.js, Exp
 
 Access the application at `http://localhost:3000`.
 
-### API Documentation
+## API Documentation
 
 You can explore all of my API endpoints and test requests via Postman:
 [Natours API Documentation](https://yijiaxu.postman.co/workspace/My-Workspace~818ab724-5af1-4e6e-871c-930a0a730259/collection/45629565-2fdace76-b636-4f77-b40e-cbb3b6592c68?action=share&creator=45629565&active-environment=45629565-02aac860-2430-4dc2-acf0-abb4fe447e2c)
 
 ![postman](public/assets/postman.png)
 
-### Screenshots
+## Screenshots
 
 Home page
 
@@ -90,6 +90,7 @@ User Profile
 
 ![userprofile](public/assets/user_profile.gif)
 
-### Explore more of this project on Render!
+
+## Wannna explore more? Check out this project on Render!
 
 [natours-cxwn.onrender.com/](https://natours-cxwn.onrender.com/ 'https://natours-cxwn.onrender.com/')
