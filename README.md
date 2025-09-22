@@ -59,7 +59,37 @@ Access the application at `http://localhost:3000`.
 
 ### API Documentation
 
-You can explore all API endpoints and test requests via Postman:
+You can explore all of my API endpoints and test requests via Postman:
 [Natours API Documentation](https://yijiaxu.postman.co/workspace/My-Workspace~818ab724-5af1-4e6e-871c-930a0a730259/collection/45629565-2fdace76-b636-4f77-b40e-cbb3b6592c68?action=share&creator=45629565&active-environment=45629565-02aac860-2430-4dc2-acf0-abb4fe447e2c)
 
+![postman](public/assets/postman.png)
+
 ### Screenshots
+
+Home page
+
+![homepage](public/assets/home.gif)
+
+Tours Page
+
+![tours](public/assets/tours.gif)
+
+Sign in Page
+
+![signin](public/assets/signin.gif)
+
+User Login/Log out
+
+![login/logout](public/assets/loginout.gif)
+
+Admin Profile / Change username
+
+![adminprofile](public/assets/admin_profile.gif)
+
+User Profile
+
+![userprofile](public/assets/user_profile.gif)
+
+### Explore more of this project on Render!
+
+[natours-cxwn.onrender.com/](https://natours-cxwn.onrender.com/ 'https://natours-cxwn.onrender.com/')
